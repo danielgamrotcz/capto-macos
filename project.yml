@@ -1,0 +1,27 @@
+name: QuickNote
+options:
+  bundleIdPrefix: com.danielgamrot
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  minimumXcodeGenVersion: "2.40"
+
+settings:
+  base:
+    SWIFT_VERSION: "5"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    CODE_SIGN_IDENTITY: "-"
+    ENABLE_HARDENED_RUNTIME: YES
+
+targets:
+  QuickNote:
+    type: application
+    platform: macOS
+    sources:
+      - QuickNote
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.danielgamrot.QuickNote
+        INFOPLIST_FILE: QuickNote/Info.plist
+        CODE_SIGN_ENTITLEMENTS: QuickNote/QuickNote.entitlements
+        GENERATE_INFOPLIST_FILE: false

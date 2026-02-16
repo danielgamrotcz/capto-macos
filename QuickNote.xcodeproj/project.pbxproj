@@ -1,0 +1,339 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2AC2324217151DA6D9A66EDA /* NoteInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8F1D241D298DDB44A4DEB6 /* NoteInputView.swift */; };
+		2C189602A31159B4339F2DB0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00559CD97827413C6728D2A7 /* SettingsView.swift */; };
+		3AD660A8663D28B128D4C2AE /* NoteTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0B2BFC24AE2563529F0C1 /* NoteTextEditor.swift */; };
+		4253E7A7049B5CAC5DD43FF1 /* ShortcutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEAB52FE6FA1246720B535B /* ShortcutRecorder.swift */; };
+		4254EC425D02E317F0681688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2EFFE7DB3615B03F25D493 /* Assets.xcassets */; };
+		4CB32190D7BB90E6EE854485 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E07170C7B74A5C80FB2D8E /* AppDelegate.swift */; };
+		4E2467C9B83C3F92EE731739 /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4F81EEE955F13B6B11779E /* FloatingPanel.swift */; };
+		6DFE3E6CDD59347B1F7B46C1 /* NotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A47CA553D51154B4D0BF7D3 /* NotionService.swift */; };
+		93A27FE3352D35FF5A0A00D0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2CEBAE9C90940A6198D05B /* main.swift */; };
+		B13E227E94FB7F2D34D0E4E7 /* GlobalHotkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCFBB116CD2214D41D3253 /* GlobalHotkey.swift */; };
+		DC70FD908FFD87DDAE62FDDA /* AccessibilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A498C1E150ADA7821AB9E82C /* AccessibilityHelper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00559CD97827413C6728D2A7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		031CE078251DAD8B12952268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		05BCFBB116CD2214D41D3253 /* GlobalHotkey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkey.swift; sourceTree = "<group>"; };
+		1C4F81EEE955F13B6B11779E /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
+		5E8F1D241D298DDB44A4DEB6 /* NoteInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInputView.swift; sourceTree = "<group>"; };
+		6A47CA553D51154B4D0BF7D3 /* NotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionService.swift; sourceTree = "<group>"; };
+		9EEAB52FE6FA1246720B535B /* ShortcutRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorder.swift; sourceTree = "<group>"; };
+		A1748A19979B1DBAED24BD59 /* QuickNote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickNote.entitlements; sourceTree = "<group>"; };
+		A498C1E150ADA7821AB9E82C /* AccessibilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHelper.swift; sourceTree = "<group>"; };
+		BA2CEBAE9C90940A6198D05B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C0C0B2BFC24AE2563529F0C1 /* NoteTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTextEditor.swift; sourceTree = "<group>"; };
+		CA2EFFE7DB3615B03F25D493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D29DBF52163D2DB381BBD96E /* QuickNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8E07170C7B74A5C80FB2D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		36F6B0B2BB200036EC556C27 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D29DBF52163D2DB381BBD96E /* QuickNote.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8250C67923069E0D525EBF66 /* QuickNote */ = {
+			isa = PBXGroup;
+			children = (
+				A498C1E150ADA7821AB9E82C /* AccessibilityHelper.swift */,
+				E8E07170C7B74A5C80FB2D8E /* AppDelegate.swift */,
+				CA2EFFE7DB3615B03F25D493 /* Assets.xcassets */,
+				1C4F81EEE955F13B6B11779E /* FloatingPanel.swift */,
+				05BCFBB116CD2214D41D3253 /* GlobalHotkey.swift */,
+				031CE078251DAD8B12952268 /* Info.plist */,
+				5E8F1D241D298DDB44A4DEB6 /* NoteInputView.swift */,
+				C0C0B2BFC24AE2563529F0C1 /* NoteTextEditor.swift */,
+				6A47CA553D51154B4D0BF7D3 /* NotionService.swift */,
+				A1748A19979B1DBAED24BD59 /* QuickNote.entitlements */,
+				BA2CEBAE9C90940A6198D05B /* main.swift */,
+				00559CD97827413C6728D2A7 /* SettingsView.swift */,
+				9EEAB52FE6FA1246720B535B /* ShortcutRecorder.swift */,
+			);
+			path = QuickNote;
+			sourceTree = "<group>";
+		};
+		E1F28972ED15FC0E8A42677F = {
+			isa = PBXGroup;
+			children = (
+				8250C67923069E0D525EBF66 /* QuickNote */,
+				36F6B0B2BB200036EC556C27 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		28549BC29E3157B343463F7D /* QuickNote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41E2FB8E811AC42C7164560E /* Build configuration list for PBXNativeTarget "QuickNote" */;
+			buildPhases = (
+				DA64DC3EC6782A417C823759 /* Sources */,
+				54AE5B905769DF9A726D33DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickNote;
+			packageProductDependencies = (
+			);
+			productName = QuickNote;
+			productReference = D29DBF52163D2DB381BBD96E /* QuickNote.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD6618CAA0BFB98EB1C359B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 83751AAC8675C24C0DAEC227 /* Build configuration list for PBXProject "QuickNote" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E1F28972ED15FC0E8A42677F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				28549BC29E3157B343463F7D /* QuickNote */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		54AE5B905769DF9A726D33DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4254EC425D02E317F0681688 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA64DC3EC6782A417C823759 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC70FD908FFD87DDAE62FDDA /* AccessibilityHelper.swift in Sources */,
+				4CB32190D7BB90E6EE854485 /* AppDelegate.swift in Sources */,
+				4E2467C9B83C3F92EE731739 /* FloatingPanel.swift in Sources */,
+				B13E227E94FB7F2D34D0E4E7 /* GlobalHotkey.swift in Sources */,
+				2AC2324217151DA6D9A66EDA /* NoteInputView.swift in Sources */,
+				3AD660A8663D28B128D4C2AE /* NoteTextEditor.swift in Sources */,
+				6DFE3E6CDD59347B1F7B46C1 /* NotionService.swift in Sources */,
+				93A27FE3352D35FF5A0A00D0 /* main.swift in Sources */,
+				2C189602A31159B4339F2DB0 /* SettingsView.swift in Sources */,
+				4253E7A7049B5CAC5DD43FF1 /* ShortcutRecorder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0F1CA792E46E7A910CA88C18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5;
+			};
+			name = Release;
+		};
+		522E09BB35EE1398D67E18CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QuickNote/QuickNote.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = QuickNote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danielgamrot.QuickNote;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5A25FEFF9D3ADB7D12AD2D37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QuickNote/QuickNote.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = QuickNote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danielgamrot.QuickNote;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D512439429323907C265BA34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		41E2FB8E811AC42C7164560E /* Build configuration list for PBXNativeTarget "QuickNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A25FEFF9D3ADB7D12AD2D37 /* Debug */,
+				522E09BB35EE1398D67E18CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		83751AAC8675C24C0DAEC227 /* Build configuration list for PBXProject "QuickNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D512439429323907C265BA34 /* Debug */,
+				0F1CA792E46E7A910CA88C18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CD6618CAA0BFB98EB1C359B4 /* Project object */;
+}
