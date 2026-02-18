@@ -32,6 +32,14 @@ final class NotionService {
 
     private init() {}
 
+    private func czechTimestamp() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "cs_CZ")
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "d. M. yyyy, HH:mm"
+        return formatter.string(from: Date())
+    }
+
     func append(text: String) async throws {
         guard !token.isEmpty, !pageId.isEmpty else {
             throw NotionError.invalidConfig
@@ -48,14 +56,20 @@ final class NotionService {
             "children": [
                 [
                     "object": "block",
-                    "type": "paragraph",
-                    "paragraph": [
+                    "type": "callout",
+                    "callout": [
+                        "icon": ["type": "emoji", "emoji": "🎙️"],
                         "rich_text": [
                             [
                                 "type": "text",
-                                "text": ["content": text],
-                            ]
-                        ]
+                                "text": ["content": czechTimestamp()],
+                                "annotations": ["bold": true],
+                            ],
+                            [
+                                "type": "text",
+                                "text": ["content": "\n\(text)"],
+                            ],
+                        ],
                     ],
                 ]
             ]
