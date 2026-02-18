@@ -97,7 +97,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func setupSettingsPanel() {
         settingsPanel = FloatingPanel(
-            size: NSSize(width: 480, height: 380),
+            size: NSSize(width: 480, height: 500),
             hidesOnDeactivate: false
         )
         let hostingView = NSHostingView(rootView: SettingsView())
@@ -300,4 +300,5 @@ extension Notification.Name {
     static let noteSubmitFailed = Notification.Name("noteSubmitFailed")
     static let noteQueued = Notification.Name("noteQueued")
     static let pendingNotesChanged = Notification.Name("pendingNotesChanged")
+    static let transcriptUpdate = Notification.Name("transcriptUpdate")
 }

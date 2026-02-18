@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		031D44A1118DB20BDF7F8200 /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA6E8A437850D1251537AC /* FloatingPanel.swift */; };
+		1C95BEE921119CDE3FEB51F2 /* SonioxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94ACD8D23189643196F03CC6 /* SonioxService.swift */; };
 		2E2F67440AD3078AA40D2A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55372F80B9D4D539C91EBB2A /* AppDelegate.swift */; };
 		3F72E5970C92F427234BA4E0 /* ShortcutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1CAF2ABA29ADC4320E9609 /* ShortcutRecorder.swift */; };
 		59ACDA2C57985A493AE34FFF /* GlobalHotkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04368F4F9736F8725EFFCA6 /* GlobalHotkey.swift */; };
@@ -31,6 +32,7 @@
 		6D63314D531F964548F8BC2C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		89413E5602048FCCE05E2B9E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		93EA933CACECE91F70CC41F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		94ACD8D23189643196F03CC6 /* SonioxService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonioxService.swift; sourceTree = "<group>"; };
 		A4126702B8C3ADDA3DC9AF8E /* NoteInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInputView.swift; sourceTree = "<group>"; };
 		B04368F4F9736F8725EFFCA6 /* GlobalHotkey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkey.swift; sourceTree = "<group>"; };
 		B0DDEBB7CB110225E9F29835 /* AccessibilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHelper.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				64AEBE14CF9A48FFDEF95C8E /* NotionService.swift */,
 				6D63314D531F964548F8BC2C /* SettingsView.swift */,
 				1E1CAF2ABA29ADC4320E9609 /* ShortcutRecorder.swift */,
+				94ACD8D23189643196F03CC6 /* SonioxService.swift */,
 			);
 			path = Capto;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				5C091C60429DC79C149BB554 /* NotionService.swift in Sources */,
 				B678B94D3DC200CF1D8CA103 /* SettingsView.swift in Sources */,
 				3F72E5970C92F427234BA4E0 /* ShortcutRecorder.swift in Sources */,
+				1C95BEE921119CDE3FEB51F2 /* SonioxService.swift in Sources */,
 				E289F63EC95DEC5B44165D0B /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,5 +26,7 @@
 	<string></string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Capto používá mikrofon pro přepis hlasu do textu poznámky.</string>
 </dict>
 </plist>

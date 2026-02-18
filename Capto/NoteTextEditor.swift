@@ -6,6 +6,8 @@ struct NoteTextEditor: NSViewRepresentable {
     var placeholder: String = "Napište poznámku..."
     var onCommandReturn: () -> Void = {}
     var onEscape: () -> Void = {}
+    var onRightOptionDown: () -> Void = {}
+    var onRightOptionUp: () -> Void = {}
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -21,6 +23,8 @@ struct NoteTextEditor: NSViewRepresentable {
         let textView = NoteNSTextView()
         textView.onCommandReturn = onCommandReturn
         textView.onEscape = onEscape
+        textView.onRightOptionDown = onRightOptionDown
+        textView.onRightOptionUp = onRightOptionUp
         textView.font = .systemFont(ofSize: 14)
         textView.textColor = .labelColor
         textView.backgroundColor = .clear
@@ -65,6 +69,10 @@ struct NoteTextEditor: NSViewRepresentable {
             textView.string = text
         }
         context.coordinator.placeholderLabel?.isHidden = !text.isEmpty
+        if let noteTextView = textView as? NoteNSTextView {
+            noteTextView.onRightOptionDown = onRightOptionDown
+            noteTextView.onRightOptionUp = onRightOptionUp
+        }
     }
 
     // MARK: - Coordinator
@@ -91,6 +99,8 @@ struct NoteTextEditor: NSViewRepresentable {
 final class NoteNSTextView: NSTextView {
     var onCommandReturn: () -> Void = {}
     var onEscape: () -> Void = {}
+    var onRightOptionDown: () -> Void = {}
+    var onRightOptionUp: () -> Void = {}
 
     override func keyDown(with event: NSEvent) {
         if event.modifierFlags.contains(.command) && event.keyCode == 36 {
@@ -102,5 +112,17 @@ final class NoteNSTextView: NSTextView {
             return
         }
         super.keyDown(with: event)
+    }
+
+    override func flagsChanged(with event: NSEvent) {
+        // Right Option = keyCode 61
+        if event.keyCode == 61 {
+            if event.modifierFlags.contains(.option) {
+                onRightOptionDown()
+            } else {
+                onRightOptionUp()
+            }
+        }
+        super.flagsChanged(with: event)
     }
 }

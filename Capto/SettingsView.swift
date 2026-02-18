@@ -6,11 +6,13 @@ struct SettingsView: View {
     @AppStorage("notionPageId") private var pageId = ""
     @AppStorage("shortcutKeyCode") private var keyCode: Int = defaultShortcutKeyCode
     @AppStorage("shortcutModifiers") private var modifiers: Int = defaultShortcutModifiers
+    @AppStorage("sonioxApiKey") private var sonioxApiKey = ""
 
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
     @State private var accessibilityGranted = AccessibilityHelper.isTrusted
     @State private var connectionStatus: ConnectionStatus = .idle
     @State private var showToken = false
+    @State private var showSonioxKey = false
 
     private let accessibilityTimer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
@@ -20,6 +22,7 @@ struct SettingsView: View {
                 VStack(spacing: 16) {
                     generalSection
                     notionSection
+                    sonioxSection
                     if !accessibilityGranted {
                         accessibilitySection
                     }
@@ -34,7 +37,7 @@ struct SettingsView: View {
 
             bottomBar
         }
-        .frame(width: 480, height: accessibilityGranted ? 380 : 450)
+        .frame(width: 480, height: accessibilityGranted ? 500 : 570)
         .background {
             VisualEffectBackground()
         }
@@ -177,6 +180,50 @@ struct SettingsView: View {
             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
             Text("Token vytvoříte na [notion.so/my-integrations](https://www.notion.so/my-integrations). Nezapomeňte stránku propojit s integrací.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.top, 6)
+                .padding(.horizontal, 4)
+        }
+    }
+
+    // MARK: - Soniox
+
+    private var sonioxSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Soniox")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.bottom, 8)
+
+            VStack(spacing: 0) {
+                settingsRow {
+                    Text("API Key")
+                        .frame(width: 120, alignment: .leading)
+                    HStack(spacing: 6) {
+                        Group {
+                            if showSonioxKey {
+                                TextField("sk-...", text: $sonioxApiKey)
+                            } else {
+                                SecureField("sk-...", text: $sonioxApiKey)
+                            }
+                        }
+                        .textFieldStyle(.roundedBorder)
+
+                        Button {
+                            showSonioxKey.toggle()
+                        } label: {
+                            Image(systemName: showSonioxKey ? "eye.slash" : "eye")
+                                .foregroundStyle(.secondary)
+                        }
+                        .buttonStyle(.borderless)
+                    }
+                }
+            }
+            .background(Color.primary.opacity(0.06))
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+
+            Text("Přepis hlasu se spustí podržením pravého ⌥ v okně pro psaní poznámky.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .padding(.top, 6)
