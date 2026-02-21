@@ -39,6 +39,11 @@ Capto/
 └── AccessibilityHelper.swift # System accessibility prompt
 ```
 
+## App Icon
+
+- Generated via `~/Projects/icon-generator` (key: `capto`, symbol: inbox tray + arrow)
+- Asset: `Capto/Assets.xcassets/AppIcon.appiconset/`
+
 ## Key Patterns
 
 - Notion token + page ID stored in **UserDefaults** (user enters via Settings UI)
