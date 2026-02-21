@@ -7,12 +7,14 @@ struct SettingsView: View {
     @AppStorage("shortcutKeyCode") private var keyCode: Int = defaultShortcutKeyCode
     @AppStorage("shortcutModifiers") private var modifiers: Int = defaultShortcutModifiers
     @AppStorage("sonioxApiKey") private var sonioxApiKey = ""
+    @AppStorage("anthropicApiKey") private var anthropicApiKey = ""
 
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
     @State private var accessibilityGranted = AccessibilityHelper.isTrusted
     @State private var connectionStatus: ConnectionStatus = .idle
     @State private var showToken = false
     @State private var showSonioxKey = false
+    @State private var showAnthropicKey = false
 
     private let accessibilityTimer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
@@ -23,6 +25,7 @@ struct SettingsView: View {
                     generalSection
                     notionSection
                     sonioxSection
+                    anthropicSection
                     if !accessibilityGranted {
                         accessibilitySection
                     }
@@ -37,7 +40,7 @@ struct SettingsView: View {
 
             bottomBar
         }
-        .frame(width: 480, height: accessibilityGranted ? 600 : 670)
+        .frame(width: 480, height: accessibilityGranted ? 700 : 770)
         .background {
             VisualEffectBackground()
         }
@@ -224,6 +227,50 @@ struct SettingsView: View {
             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
             Text("Přepis hlasu se spustí podržením pravého ⌥ v okně pro psaní poznámky.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.top, 6)
+                .padding(.horizontal, 4)
+        }
+    }
+
+    // MARK: - Anthropic
+
+    private var anthropicSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Anthropic")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.bottom, 8)
+
+            VStack(spacing: 0) {
+                settingsRow {
+                    Text("API Key")
+                        .frame(width: 120, alignment: .leading)
+                    HStack(spacing: 6) {
+                        Group {
+                            if showAnthropicKey {
+                                TextField("sk-ant-...", text: $anthropicApiKey)
+                            } else {
+                                SecureField("sk-ant-...", text: $anthropicApiKey)
+                            }
+                        }
+                        .textFieldStyle(.roundedBorder)
+
+                        Button {
+                            showAnthropicKey.toggle()
+                        } label: {
+                            Image(systemName: showAnthropicKey ? "eye.slash" : "eye")
+                                .foregroundStyle(.secondary)
+                        }
+                        .buttonStyle(.borderless)
+                    }
+                }
+            }
+            .background(Color.primary.opacity(0.06))
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+
+            Text("Generuje AI titulek poznámky (5-7 slov). Bez klíče se použije začátek textu.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .padding(.top, 6)
