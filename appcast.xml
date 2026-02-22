@@ -27,7 +27,7 @@
             <sparkle:version>3</sparkle:version>
             <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/danielgamrotcz/capto-macos/releases/download/v1.2.0/Capto-1.2.0.zip" sparkle:edSignature="lprybsrq7+O3ewbFGbxR+aAgPddlIug+IcVs1E2lzHmBHAnePTQjjMBIX97OTRmKjRwVvJ8IYsppii+eoKyAAw==" length="1214992" type="application/octet-stream"/>
+            <enclosure url="https://github.com/danielgamrotcz/capto-macos/releases/download/v1.2.0/Capto-1.2.0.zip" sparkle:edSignature="hx9TslfML1aRYPNMFiE5B66E9Ti9Gvu1SLqumEZOjLAFs8BTb0wchhAe7QXfNUoWwWsMsZYHzWid7OjmOP+VCA==" length="1215029" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>
