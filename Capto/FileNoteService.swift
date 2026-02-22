@@ -46,11 +46,8 @@ final class FileNoteService {
     // MARK: - File Naming
 
     private func buildFileName(title: String) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let date = formatter.string(from: Date())
         let sanitized = sanitize(title)
-        let base = "\(date) \(sanitized)"
+        let base = "💻 \(sanitized)"
 
         if !FileManager.default.fileExists(atPath: baseDirectory.appendingPathComponent("\(base).md").path) {
             return "\(base).md"
