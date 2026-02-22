@@ -37,7 +37,8 @@ final class FileNoteService {
         let fileURL = baseDirectory.appendingPathComponent(fileName)
 
         do {
-            try text.write(to: fileURL, atomically: true, encoding: .utf8)
+            let content = "# 💻 \(title)\n\n\(text)"
+            try content.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
             throw FileNoteError.writeFailed(error)
         }
@@ -103,7 +104,7 @@ final class FileNoteService {
         let body: [String: Any] = [
             "model": anthropicModel,
             "max_tokens": 50,
-            "system": "Generate a concise 5-7 word title for this voice note. Keep the same language as the input. Return ONLY the title, no quotes, no punctuation at the end.",
+            "system": "Shrň následující text do krátkého názvu o 5-7 slovech v češtině. Na konci nebude žádné interpunkční znaménko, ani tečka, ani čárka, ani vykřičník, ani otazník. Odpověz POUZE názvem, nic jiného.",
             "messages": [["role": "user", "content": text.trimmingCharacters(in: .whitespacesAndNewlines)]],
         ]
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
@@ -132,7 +133,8 @@ final class FileNoteService {
     private func fallbackTitle(text: String) -> String {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty { return "Voice note" }
-        if trimmed.count <= 60 { return trimmed }
-        return String(trimmed.prefix(60)) + "…"
+        let words = trimmed.split(separator: " ", maxSplits: 7, omittingEmptySubsequences: true)
+        if words.count <= 7 { return trimmed }
+        return words.prefix(7).joined(separator: " ")
     }
 }
