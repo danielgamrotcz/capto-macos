@@ -131,12 +131,12 @@ struct SettingsView: View {
                 settingsRow {
                     Text("Složka")
                         .frame(width: 120, alignment: .leading)
-                    Text("~/Documents/Notero/")
+                    Text("Google Drive/Notero/")
                         .foregroundStyle(.secondary)
                     Spacer()
                     Button("Otevřít") {
                         let url = URL(fileURLWithPath: NSHomeDirectory())
-                            .appendingPathComponent("Documents/Notero", isDirectory: true)
+                            .appendingPathComponent("Library/CloudStorage/GoogleDrive-daniel@gamrot.cz/Můj disk/Notero", isDirectory: true)
                         NSWorkspace.shared.open(url)
                     }
                 }

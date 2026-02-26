@@ -19,7 +19,7 @@ final class FileNoteService {
 
     private let baseDirectory = URL(
         fileURLWithPath: NSHomeDirectory()
-    ).appendingPathComponent("Documents/Notero", isDirectory: true)
+    ).appendingPathComponent("Library/CloudStorage/GoogleDrive-daniel@gamrot.cz/Můj disk/Notero", isDirectory: true)
 
     private let session = URLSession.shared
     private let anthropicModel = "claude-haiku-4-5-20251001"
