@@ -7,6 +7,8 @@ struct SettingsView: View {
     @AppStorage("sonioxApiKey") private var sonioxApiKey = ""
     @AppStorage("anthropicApiKey") private var anthropicApiKey = ""
 
+    @AppStorage("notesFolderPath") private var notesFolderPath = ""
+
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
     @State private var accessibilityGranted = AccessibilityHelper.isTrusted
     @State private var showSonioxKey = false
@@ -131,13 +133,16 @@ struct SettingsView: View {
                 settingsRow {
                     Text("Složka")
                         .frame(width: 120, alignment: .leading)
-                    Text("Google Drive/Notero/")
+                    Text(notesFolderDisplayPath)
                         .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .truncationMode(.head)
                     Spacer()
                     Button("Otevřít") {
-                        let url = URL(fileURLWithPath: NSHomeDirectory())
-                            .appendingPathComponent("Library/CloudStorage/GoogleDrive-daniel@gamrot.cz/Můj disk/Notero", isDirectory: true)
-                        NSWorkspace.shared.open(url)
+                        NSWorkspace.shared.open(FileNoteService.shared.saveDirectory)
+                    }
+                    Button("Změnit") {
+                        chooseFolder()
                     }
                 }
             }
@@ -262,6 +267,31 @@ struct SettingsView: View {
     }
 
     // MARK: - Helpers
+
+    private var notesFolderDisplayPath: String {
+        let url = FileNoteService.shared.saveDirectory
+        let home = NSHomeDirectory()
+        let path = url.path
+        if path.hasPrefix(home) {
+            return "~" + path.dropFirst(home.count)
+        }
+        return path
+    }
+
+    private func chooseFolder() {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.canCreateDirectories = true
+        panel.directoryURL = FileNoteService.shared.saveDirectory
+        panel.prompt = "Vybrat"
+        panel.message = "Vyber složku pro ukládání poznámek"
+
+        if panel.runModal() == .OK, let url = panel.url {
+            notesFolderPath = url.path
+        }
+    }
 
     private func settingsRow<Content: View>(@ViewBuilder content: () -> Content) -> some View {
         HStack {

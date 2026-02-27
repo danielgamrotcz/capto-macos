@@ -17,9 +17,17 @@ enum FileNoteError: LocalizedError {
 final class FileNoteService {
     static let shared = FileNoteService()
 
-    private let baseDirectory = URL(
+    private static let defaultDirectory = URL(
         fileURLWithPath: NSHomeDirectory()
     ).appendingPathComponent("Library/CloudStorage/GoogleDrive-daniel@gamrot.cz/Můj disk/Notero", isDirectory: true)
+
+    var saveDirectory: URL {
+        let custom = UserDefaults.standard.string(forKey: "notesFolderPath") ?? ""
+        if custom.isEmpty {
+            return Self.defaultDirectory
+        }
+        return URL(fileURLWithPath: custom)
+    }
 
     private let session = URLSession.shared
     private let anthropicModel = "claude-haiku-4-5-20251001"
@@ -34,7 +42,7 @@ final class FileNoteService {
         try ensureDirectory()
         let title = await generateTitle(text: text)
         let fileName = buildFileName(title: title)
-        let fileURL = baseDirectory.appendingPathComponent(fileName)
+        let fileURL = saveDirectory.appendingPathComponent(fileName)
 
         do {
             let content = "# 💻 \(title)\n\n\(text)"
@@ -50,13 +58,13 @@ final class FileNoteService {
         let sanitized = sanitize(title)
         let base = "💻 \(sanitized)"
 
-        if !FileManager.default.fileExists(atPath: baseDirectory.appendingPathComponent("\(base).md").path) {
+        if !FileManager.default.fileExists(atPath: saveDirectory.appendingPathComponent("\(base).md").path) {
             return "\(base).md"
         }
 
         for i in 2...99 {
             let candidate = "\(base) \(i).md"
-            if !FileManager.default.fileExists(atPath: baseDirectory.appendingPathComponent(candidate).path) {
+            if !FileManager.default.fileExists(atPath: saveDirectory.appendingPathComponent(candidate).path) {
                 return candidate
             }
         }
@@ -71,9 +79,9 @@ final class FileNoteService {
 
     private func ensureDirectory() throws {
         let fm = FileManager.default
-        if !fm.fileExists(atPath: baseDirectory.path) {
+        if !fm.fileExists(atPath: saveDirectory.path) {
             do {
-                try fm.createDirectory(at: baseDirectory, withIntermediateDirectories: true)
+                try fm.createDirectory(at: saveDirectory, withIntermediateDirectories: true)
             } catch {
                 throw FileNoteError.directoryCreationFailed
             }
