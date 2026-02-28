@@ -9,10 +9,16 @@ struct SettingsView: View {
 
     @AppStorage("notesFolderPath") private var notesFolderPath = ""
 
+    @AppStorage("supabaseURL") private var supabaseURL = ""
+    @AppStorage("supabaseServiceKey") private var supabaseServiceKey = ""
+    @AppStorage("supabaseUserID") private var supabaseUserID = ""
+
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
     @State private var accessibilityGranted = AccessibilityHelper.isTrusted
     @State private var showSonioxKey = false
     @State private var showAnthropicKey = false
+    @State private var showSupabaseKey = false
+    @State private var supabaseTestStatus = ""
 
     private let accessibilityTimer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
@@ -24,6 +30,7 @@ struct SettingsView: View {
                     saveLocationSection
                     sonioxSection
                     anthropicSection
+                    supabaseSection
                     if !accessibilityGranted {
                         accessibilitySection
                     }
@@ -38,7 +45,7 @@ struct SettingsView: View {
 
             bottomBar
         }
-        .frame(width: 480, height: accessibilityGranted ? 560 : 630)
+        .frame(width: 480, height: accessibilityGranted ? 720 : 790)
         .background {
             VisualEffectBackground()
         }
@@ -242,6 +249,90 @@ struct SettingsView: View {
                 .foregroundStyle(.secondary)
                 .padding(.top, 6)
                 .padding(.horizontal, 4)
+        }
+    }
+
+    // MARK: - Supabase
+
+    private var supabaseSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Supabase")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.bottom, 8)
+
+            VStack(spacing: 0) {
+                settingsRow {
+                    Text("URL")
+                        .frame(width: 120, alignment: .leading)
+                    TextField("https://xxx.supabase.co", text: $supabaseURL)
+                        .textFieldStyle(.roundedBorder)
+                }
+
+                Divider().padding(.horizontal, 12)
+
+                settingsRow {
+                    Text("Service Key")
+                        .frame(width: 120, alignment: .leading)
+                    HStack(spacing: 6) {
+                        Group {
+                            if showSupabaseKey {
+                                TextField("eyJ...", text: $supabaseServiceKey)
+                            } else {
+                                SecureField("eyJ...", text: $supabaseServiceKey)
+                            }
+                        }
+                        .textFieldStyle(.roundedBorder)
+
+                        Button {
+                            showSupabaseKey.toggle()
+                        } label: {
+                            Image(systemName: showSupabaseKey ? "eye.slash" : "eye")
+                                .foregroundStyle(.secondary)
+                        }
+                        .buttonStyle(.borderless)
+                    }
+                }
+
+                Divider().padding(.horizontal, 12)
+
+                settingsRow {
+                    Text("User ID")
+                        .frame(width: 120, alignment: .leading)
+                    TextField("uuid", text: $supabaseUserID)
+                        .textFieldStyle(.roundedBorder)
+                }
+
+                Divider().padding(.horizontal, 12)
+
+                settingsRow {
+                    Spacer()
+                    if !supabaseTestStatus.isEmpty {
+                        Text(supabaseTestStatus)
+                            .font(.caption)
+                            .foregroundStyle(supabaseTestStatus == "OK" ? .green : .secondary)
+                    }
+                    Button("Test Connection") {
+                        testSupabaseConnection()
+                    }
+                }
+            }
+            .background(Color.primary.opacity(0.06))
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+
+            Text("Volitelná synchronizace poznámek do Supabase. Bez údajů se ukládá jen do souboru.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.top, 6)
+                .padding(.horizontal, 4)
+        }
+    }
+
+    private func testSupabaseConnection() {
+        supabaseTestStatus = "Testování..."
+        Task {
+            let ok = await SupabaseService.shared.testConnection()
+            supabaseTestStatus = ok ? "OK" : "Chyba připojení"
         }
     }
 

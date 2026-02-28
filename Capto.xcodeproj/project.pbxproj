@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		031D44A1118DB20BDF7F8200 /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA6E8A437850D1251537AC /* FloatingPanel.swift */; };
 		1C95BEE921119CDE3FEB51F2 /* SonioxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94ACD8D23189643196F03CC6 /* SonioxService.swift */; };
+		25C918BEB37896A518A299AC /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089234DC3B0BE1582566979 /* SupabaseService.swift */; };
 		2E2F67440AD3078AA40D2A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55372F80B9D4D539C91EBB2A /* AppDelegate.swift */; };
 		3F72E5970C92F427234BA4E0 /* ShortcutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1CAF2ABA29ADC4320E9609 /* ShortcutRecorder.swift */; };
 		4D48D204296B965ABBF08C9A /* Capto.icns in Resources */ = {isa = PBXBuildFile; fileRef = 79BFC0C1B86FB8A305A78ED8 /* Capto.icns */; };
@@ -30,6 +31,7 @@
 		55372F80B9D4D539C91EBB2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D63314D531F964548F8BC2C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		79BFC0C1B86FB8A305A78ED8 /* Capto.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Capto.icns; sourceTree = "<group>"; };
+		8089234DC3B0BE1582566979 /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		89413E5602048FCCE05E2B9E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		93EA933CACECE91F70CC41F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94ACD8D23189643196F03CC6 /* SonioxService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonioxService.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				6D63314D531F964548F8BC2C /* SettingsView.swift */,
 				1E1CAF2ABA29ADC4320E9609 /* ShortcutRecorder.swift */,
 				94ACD8D23189643196F03CC6 /* SonioxService.swift */,
+				8089234DC3B0BE1582566979 /* SupabaseService.swift */,
 			);
 			path = Capto;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				B678B94D3DC200CF1D8CA103 /* SettingsView.swift in Sources */,
 				3F72E5970C92F427234BA4E0 /* ShortcutRecorder.swift in Sources */,
 				1C95BEE921119CDE3FEB51F2 /* SonioxService.swift in Sources */,
+				25C918BEB37896A518A299AC /* SupabaseService.swift in Sources */,
 				E289F63EC95DEC5B44165D0B /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

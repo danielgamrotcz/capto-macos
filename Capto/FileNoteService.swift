@@ -44,11 +44,19 @@ final class FileNoteService {
         let fileName = buildFileName(title: title)
         let fileURL = saveDirectory.appendingPathComponent(fileName)
 
+        let content = "# 💻 \(title)\n\n\(text)"
         do {
-            let content = "# 💻 \(title)\n\n\(text)"
             try content.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
             throw FileNoteError.writeFailed(error)
+        }
+
+        let notePath = fileName.replacingOccurrences(of: ".md", with: "")
+        let noteTitle = "💻 \(title)"
+        Task.detached {
+            _ = await SupabaseService.shared.syncNote(
+                path: notePath, title: noteTitle, content: content
+            )
         }
     }
 
