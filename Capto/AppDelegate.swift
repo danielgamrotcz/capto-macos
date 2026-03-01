@@ -103,7 +103,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func setupSettingsPanel() {
         settingsPanel = FloatingPanel(
-            size: NSSize(width: 480, height: 560),
+            size: NSSize(width: 480, height: 500),
             hidesOnDeactivate: false
         )
         let hostingView = NSHostingView(rootView: SettingsView())
@@ -222,7 +222,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func submitNote(text: String) {
         Task {
             do {
-                try await FileNoteService.shared.saveNote(text: text)
+                try await NoteService.shared.saveNote(text: text)
                 await MainActor.run {
                     NotificationCenter.default.post(name: .noteSubmitted, object: nil)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {

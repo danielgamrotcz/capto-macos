@@ -7,8 +7,6 @@ struct SettingsView: View {
     @AppStorage("sonioxApiKey") private var sonioxApiKey = ""
     @AppStorage("anthropicApiKey") private var anthropicApiKey = ""
 
-    @AppStorage("notesFolderPath") private var notesFolderPath = ""
-
     @AppStorage("supabaseURL") private var supabaseURL = ""
     @AppStorage("supabaseServiceKey") private var supabaseServiceKey = ""
     @AppStorage("supabaseUserID") private var supabaseUserID = ""
@@ -27,7 +25,6 @@ struct SettingsView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     generalSection
-                    saveLocationSection
                     sonioxSection
                     anthropicSection
                     supabaseSection
@@ -45,7 +42,7 @@ struct SettingsView: View {
 
             bottomBar
         }
-        .frame(width: 480, height: accessibilityGranted ? 720 : 790)
+        .frame(width: 480, height: accessibilityGranted ? 640 : 710)
         .background {
             VisualEffectBackground()
         }
@@ -124,43 +121,6 @@ struct SettingsView: View {
             }
             .background(Color.primary.opacity(0.06))
             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-        }
-    }
-
-    // MARK: - Save Location
-
-    private var saveLocationSection: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("Úložiště")
-                .font(.headline)
-                .foregroundStyle(.secondary)
-                .padding(.bottom, 8)
-
-            VStack(spacing: 0) {
-                settingsRow {
-                    Text("Složka")
-                        .frame(width: 120, alignment: .leading)
-                    Text(notesFolderDisplayPath)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                        .truncationMode(.head)
-                    Spacer()
-                    Button("Otevřít") {
-                        NSWorkspace.shared.open(FileNoteService.shared.saveDirectory)
-                    }
-                    Button("Změnit") {
-                        chooseFolder()
-                    }
-                }
-            }
-            .background(Color.primary.opacity(0.06))
-            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-
-            Text("Poznámky se ukládají jako Markdown soubory s AI-generovaným názvem.")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .padding(.top, 6)
-                .padding(.horizontal, 4)
         }
     }
 
@@ -320,7 +280,7 @@ struct SettingsView: View {
             .background(Color.primary.opacity(0.06))
             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
-            Text("Volitelná synchronizace poznámek do Supabase. Bez údajů se ukládá jen do souboru.")
+            Text("Poznámky se ukládají přímo do Supabase.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .padding(.top, 6)
@@ -358,31 +318,6 @@ struct SettingsView: View {
     }
 
     // MARK: - Helpers
-
-    private var notesFolderDisplayPath: String {
-        let url = FileNoteService.shared.saveDirectory
-        let home = NSHomeDirectory()
-        let path = url.path
-        if path.hasPrefix(home) {
-            return "~" + path.dropFirst(home.count)
-        }
-        return path
-    }
-
-    private func chooseFolder() {
-        let panel = NSOpenPanel()
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.allowsMultipleSelection = false
-        panel.canCreateDirectories = true
-        panel.directoryURL = FileNoteService.shared.saveDirectory
-        panel.prompt = "Vybrat"
-        panel.message = "Vyber složku pro ukládání poznámek"
-
-        if panel.runModal() == .OK, let url = panel.url {
-            notesFolderPath = url.path
-        }
-    }
 
     private func settingsRow<Content: View>(@ViewBuilder content: () -> Content) -> some View {
         HStack {

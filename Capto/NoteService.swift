@@ -1,33 +1,21 @@
 import Foundation
 
-enum FileNoteError: LocalizedError {
-    case directoryCreationFailed
-    case writeFailed(Error)
+enum NoteError: LocalizedError {
+    case supabaseNotConfigured
+    case syncFailed(String)
 
     var errorDescription: String? {
         switch self {
-        case .directoryCreationFailed:
-            return "Nelze vytvořit složku pro poznámky"
-        case .writeFailed(let error):
-            return "Chyba zápisu: \(error.localizedDescription)"
+        case .supabaseNotConfigured:
+            return "Nastav Supabase v nastavení"
+        case .syncFailed(let detail):
+            return "Chyba ukládání: \(detail)"
         }
     }
 }
 
-final class FileNoteService {
-    static let shared = FileNoteService()
-
-    private static let defaultDirectory = URL(
-        fileURLWithPath: NSHomeDirectory()
-    ).appendingPathComponent("Library/CloudStorage/GoogleDrive-daniel@gamrot.cz/Můj disk/Notero", isDirectory: true)
-
-    var saveDirectory: URL {
-        let custom = UserDefaults.standard.string(forKey: "notesFolderPath") ?? ""
-        if custom.isEmpty {
-            return Self.defaultDirectory
-        }
-        return URL(fileURLWithPath: custom)
-    }
+final class NoteService {
+    static let shared = NoteService()
 
     private let session = URLSession.shared
     private let anthropicModel = "claude-haiku-4-5-20251001"
@@ -39,61 +27,15 @@ final class FileNoteService {
     private init() {}
 
     func saveNote(text: String) async throws {
-        try ensureDirectory()
         let title = await generateTitle(text: text)
-        let fileName = buildFileName(title: title)
-        let fileURL = saveDirectory.appendingPathComponent(fileName)
-
-        let content = "# 💻 \(title)\n\n\(text)"
-        do {
-            try content.write(to: fileURL, atomically: true, encoding: .utf8)
-        } catch {
-            throw FileNoteError.writeFailed(error)
-        }
-
-        let notePath = fileName.replacingOccurrences(of: ".md", with: "")
-        let noteTitle = "💻 \(title)"
-        Task.detached {
-            _ = await SupabaseService.shared.syncNote(
-                path: notePath, title: noteTitle, content: content
-            )
-        }
-    }
-
-    // MARK: - File Naming
-
-    private func buildFileName(title: String) -> String {
         let sanitized = sanitize(title)
-        let base = "💻 \(sanitized)"
+        let notePath = "💻 \(sanitized)"
+        let noteTitle = "💻 \(title)"
+        let content = "# 💻 \(title)\n\n\(text)"
 
-        if !FileManager.default.fileExists(atPath: saveDirectory.appendingPathComponent("\(base).md").path) {
-            return "\(base).md"
-        }
-
-        for i in 2...99 {
-            let candidate = "\(base) \(i).md"
-            if !FileManager.default.fileExists(atPath: saveDirectory.appendingPathComponent(candidate).path) {
-                return candidate
-            }
-        }
-
-        return "\(base) \(UUID().uuidString.prefix(6)).md"
-    }
-
-    private func sanitize(_ name: String) -> String {
-        let forbidden = CharacterSet(charactersIn: "/:\\?*\"<>|")
-        return name.components(separatedBy: forbidden).joined()
-    }
-
-    private func ensureDirectory() throws {
-        let fm = FileManager.default
-        if !fm.fileExists(atPath: saveDirectory.path) {
-            do {
-                try fm.createDirectory(at: saveDirectory, withIntermediateDirectories: true)
-            } catch {
-                throw FileNoteError.directoryCreationFailed
-            }
-        }
+        try await SupabaseService.shared.syncNote(
+            path: notePath, title: noteTitle, content: content
+        )
     }
 
     // MARK: - Title Generation
@@ -129,11 +71,7 @@ final class FileNoteService {
 
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
-            throw FileNoteError.writeFailed(
-                NSError(domain: "FileNoteService", code: -1, userInfo: [
-                    NSLocalizedDescriptionKey: "Claude API error"
-                ])
-            )
+            throw NoteError.syncFailed("Claude API error")
         }
 
         guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
@@ -152,5 +90,10 @@ final class FileNoteService {
         let words = trimmed.split(separator: " ", maxSplits: 7, omittingEmptySubsequences: true)
         if words.count <= 7 { return trimmed }
         return words.prefix(7).joined(separator: " ")
+    }
+
+    private func sanitize(_ name: String) -> String {
+        let forbidden = CharacterSet(charactersIn: "/:\\?*\"<>|")
+        return name.components(separatedBy: forbidden).joined()
     }
 }

@@ -16,27 +16,22 @@ actor SupabaseService {
 
     // MARK: - Public
 
-    func syncNote(path: String, title: String, content: String) async -> Bool {
-        guard isConfigured else { return false }
-        do {
-            let folderPath = (path as NSString).deletingLastPathComponent
-            let folderId = try await ensureFolder(path: folderPath)
+    func syncNote(path: String, title: String, content: String) async throws {
+        guard isConfigured else { throw NoteError.supabaseNotConfigured }
 
-            var body: [String: Any] = [
-                "user_id": userId,
-                "title": title,
-                "content": content,
-                "path": path,
-            ]
-            if let folderId { body["folder_id"] = folderId }
+        let folderPath = (path as NSString).deletingLastPathComponent
+        let folderId = try await ensureFolder(path: folderPath)
 
-            _ = try await request(method: "POST", table: "notes", data: body,
-                                  extraHeaders: ["Prefer": "resolution=merge-duplicates"])
-            return true
-        } catch {
-            NSLog("[SupabaseService] syncNote failed: \(error)")
-            return false
-        }
+        var body: [String: Any] = [
+            "user_id": userId,
+            "title": title,
+            "content": content,
+            "path": path,
+        ]
+        if let folderId { body["folder_id"] = folderId }
+
+        _ = try await request(method: "POST", table: "notes", data: body,
+                              extraHeaders: ["Prefer": "resolution=merge-duplicates"])
     }
 
     func testConnection() async -> Bool {
