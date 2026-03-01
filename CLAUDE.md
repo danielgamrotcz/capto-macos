@@ -1,6 +1,6 @@
 # Capto (capto-macos)
 
-Native macOS menu bar app for quick note-taking with Notion integration.
+Native macOS menu bar app for quick note-taking with Supabase storage.
 
 ## Tech Stack
 
@@ -31,10 +31,11 @@ Capto/
 ├── FloatingPanel.swift      # Borderless floating window
 ├── NoteInputView.swift      # Main SwiftUI input view
 ├── NoteTextEditor.swift     # Custom text editor with placeholder
-├── NotionService.swift      # Notion API integration
-├── NoteQueue.swift          # Offline queue persistence
+├── NoteService.swift        # Title generation (Claude AI) + Supabase save
+├── SupabaseService.swift    # Supabase REST API client
+├── SonioxService.swift      # Voice-to-text via Soniox API
 ├── GlobalHotkey.swift       # Carbon global hotkey (Ctrl+Opt+Cmd+I)
-├── SettingsView.swift       # Token & shortcut configuration
+├── SettingsView.swift       # API keys & shortcut configuration
 ├── ShortcutRecorder.swift   # Hotkey recording UI
 └── AccessibilityHelper.swift # System accessibility prompt
 ```
@@ -46,7 +47,9 @@ Capto/
 
 ## Key Patterns
 
-- Notion token + page ID stored in **UserDefaults** (user enters via Settings UI)
+- Notes saved directly to Supabase (no local filesystem storage)
+- AI title generation via Anthropic Claude API (fallback: first 7 words)
+- Supabase URL, service key, user ID stored in **UserDefaults**
 - Global hotkey via Carbon HIToolbox
-- Offline queue persists notes to disk when network unavailable
+- Voice-to-text via Soniox (hold right Option key)
 - App Sandbox disabled (required for global hotkey + accessibility)
