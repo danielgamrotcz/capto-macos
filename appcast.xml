@@ -53,5 +53,13 @@
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/danielgamrotcz/capto-macos/releases/download/v1.4.0/Capto-1.4.0.zip" sparkle:edSignature="48PPkIeO6tZ72aAzEmWLVhfD89PL26pTW1rIi5uSGdYrocRy3I+0eViXfkofWMTky7O6lii/K6UOqI7IfzdvBA==" length="3129441" type="application/octet-stream"/>
         </item>
+        <item>
+            <title>1.5.0</title>
+            <pubDate>Sat, 01 Mar 2026 12:03:00 +0000</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/danielgamrotcz/capto-macos/releases/download/v1.5.0/Capto-1.5.0.zip" sparkle:edSignature="oW9aOSiHWX8XzN18mILIDyojQcfvYTT0alSSvVTnxEj+Pr1R2HCLME4I8WNDPcCs3tbT+aFM/lE/jZ1YV0wBBQ==" length="1233800" type="application/octet-stream"/>
+        </item>
     </channel>
 </rss>
